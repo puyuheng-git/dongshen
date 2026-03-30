@@ -1,0 +1,41 @@
+---
+description: 双端工作区总览、通用约束与子代理委派；本端编码细则见 oa-agent / service-agent。
+alwaysApply: true
+---
+
+# 东审双端（主规则·精简）
+
+**对接、ANew、Export、目录与禁止项等完整说明**：仓库根目录 [`OA与Service端架构规则.md`](../../OA与Service端架构规则.md)。  
+**本文件职责**：全局门禁 + **何时用哪个子代理** + 两端通用底线（不写具体 PHP 模板，避免与 agent 重复）。
+
+## 路径与栈（谁在哪写）
+
+| 区域 | 路径 | 栈 | Cursor 编码规则（ alwaysApply ） | 子代理执行摘要 |
+|------|------|-----|----------------------------------|----------------|
+| OA | `D:\MYOA\webroot` | PHP 5.2、Layui、MySQL 5.6 | [**oa-coding.mdc**](./oa-coding.mdc)（GBK 等硬约束） | [oa-agent](../../.cursor/agents/oa-agent.md) |
+| Service | `D:\39.102.37.69\puyueheng` | PHP 7.2、ThinkPHP 6、MySQL 5.6、Redis | [**service-coding.mdc**](./service-coding.mdc)（UTF-8 等硬约束） | [service-agent](../../.cursor/agents/service-agent.md) |
+
+说明：两条编码规则与 **子代理**、**架构规则 md** 互补；模板级示例以 `OA与Service端架构规则.md` 为准。
+
+## 何时委派（子代理）
+
+| 场景 | 子代理 |
+|------|--------|
+| 改 OA：`general/`、`helper/`、`inc/`、`module/`、`task/` | `/oa-agent` |
+| 改 Service：`framework\com-lib`、`service\*`、`site\tool`、`site\open-oa`、`site\office-api` | `/service-agent` |
+| 新建/改表、DDL、迁移、索引与字段评审 | `/mysql-schema` |
+| 声称完成前后，对照规范与对接做核对 | `/verifier` |
+| 需求模糊、拆单、验收标准、范围边界 | `/product-manager` |
+| OA 流程/文案/提示/空状态，一线操作视角走查 | `/end-user` |
+
+说明：子代理正文在 `.cursor/agents/*.md`；改 agent 时不必改本文件，除非委派表有增减。
+
+## 通用（两端必须）
+
+- 不信任外部输入，必须校验；错误提示人性化，**不暴露敏感细节**。
+- 非必要不在循环里打数据库；重复逻辑封装（DRY）；关键处简要注释；少无意义空行。
+- 模块化、单一职责；预留扩展点；避免无谓强耦合。
+- **一页业务逻辑尽量对应一个接口**，避免多页面随意共用一个接口。
+- **不确定先问用户/需求，勿臆断。**
+
+用户明确要求「只输出代码」时，回复仅含代码。

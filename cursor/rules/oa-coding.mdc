@@ -1,0 +1,31 @@
+---
+description: OA 端（MYOA webroot，PHP 5.2 + GBK）编码硬约束；与 oa-agent、OA与Service端架构规则 一致。
+alwaysApply: true
+---
+
+# OA 端编码规范（摘要）
+
+**适用范围**：`D:\MYOA\webroot` 下业务目录 `general/`、`helper/`、`inc/`、`module/`、`task/`。不写 **puyueheng Service** 代码。**长文与示例**见仓库根 [`OA与Service端架构规则.md`](../../OA与Service端架构规则.md)。
+
+## 文件与编码
+
+- **PHP 源码 GBK**；变量 **小驼峰**；外部输入 **必须校验**。
+- **新建 PHP** 须有项目规定 **文件头**（功能描述、@filesource、@author puyueheng、@date、@copyright dscpa）。
+- 前端常见 **Layui + jQuery**；接口 JSON 按项目约定；MySQL 5.6。
+
+## 中文与接口
+
+- 涉及中文入参：`helper/Charset.php`，对 `$_GET`/`$_POST` 等 **`Charset::iconvArr`**（路径以实际引用为准）。
+- 接口数据返回：`helper/Api.php` — `Api::suc($data)` / `Api::err('错误信息')`，信息 **人性化、不暴露敏感细节**。
+- 接口入口：`helper/ExceptionHandler.php`，`$e = new ExceptionHandler(); $e->init();` — **不**以大段 `try/catch(Exception)` 替代统一处理。
+
+## 调用 Service 与分层
+
+- 鉴权、ANew 等按惯例：`inc/auth.php`、`helper/alias.php` 等（与现有页面一致）。
+- **仅通过 `ANew('a/b/c')` 调 Service**；**禁止**在 OA 直连 Model、**禁止**复杂业务与 **原生 SQL** 堆在页面；数据库访问用项目 **`helper/db.php`** 等封装，禁止凭空虚写裸 SQL。
+- **禁止**在业务中 `include_once` **Model**；应通过 **Service/ANew** 或项目规定的 service 封装。
+
+## 质量
+
+- 非必要 **不在循环中操作数据库**；重复逻辑抽取（DRY）；关键逻辑简要注释；控制无意义空行。
+- **一页业务逻辑尽量对应一个接口**；不确定需求 **先问**，勿臆断。

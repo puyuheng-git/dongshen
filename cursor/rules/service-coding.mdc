@@ -1,0 +1,37 @@
+---
+description: Service 端（puyueheng，PHP 7.2 + ThinkPHP 6 + UTF-8）编码硬约束；与 service-agent、OA与Service端架构规则 一致。
+alwaysApply: true
+---
+
+# Service 端编码规范（摘要）
+
+**适用范围**：`D:\39.102.37.69\puyueheng` 下 `framework\com-lib`、`service\service-api`、`service\service-app`、`site\tool`、`site\open-oa`、`site\office-api`。不写 OA 代码。
+
+## 文件与编码
+
+- **UTF-8**；变量 **camelCase**；类 **PascalCase**；**不信任入参，必须校验**。
+- **常量** 定义在 `framework\com-lib\src\constant`（按约定新增/引用）。
+
+## 模块结构（service-app）
+
+- 对 OA 入口：**`Export.php`** 门面；`ANew('a/b/c')` 映射到 `src/service/a/b/c/Export.php`（与架构规则一致）。
+- **`logic/`** 实现；**`model/`** 须设 `$name`、`$connection`（如 `td_oa`）等，与库一致；**`validate/`** 必备；**`Error.php`** 业务错误码与项目一致。
+
+## 数据与异常
+
+- **新增/修改** 必须经过 **ThinkPHP Validate**（scene create/update 等）；禁止跳过校验的业务写库路径。
+- **`use lib\exception\Exception`**：业务用 `Exception::user(Error::..., '...')` 等；系统/参数类按项目惯例；**不向终端用户暴露内部堆栈或敏感细节**。
+
+## SQL 与引用
+
+- **禁止**在业务逻辑层 **散落原生 SQL**；复杂查询在 **对应 Model/Service 层** 封装方法。
+- **禁止**在业务代码里 `include_once` **Model**；通过 **Export → logic** 与 Model 交互。
+
+## 队列与其它
+
+- 新队列：**参照** `service\service-api\app\job\qc\UpdateStepSponsorQueue.php` 与消费者侧；投递侧参照 **`QcwordImpl::updateStepSponsor`** 等与 **`Export` / `ANew('oa/qc')`** 的既有衔接方式。
+
+## 质量
+
+- 非必要 **不在循环中操作数据库**；DRY；注释；少空行。团队语境下 **高耦合、低内聚** 以 **现有 codebase** 为准，新代码仍保持 **模块清晰、公共逻辑独立**。
+- **一页对应一类接口契约**；与 OA 交接时在输出中写明 **`ANew` 路径、`Export` 方法、入参/返回结构**。不确定 **先问**。
