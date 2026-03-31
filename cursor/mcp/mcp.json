@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp",
+        "--api-key",
+        "your_api_key"
+      ]
+    },
+    "Playwright": {
+      "command": "npx",
+      "env": {},
+      "args": [
+        "@playwright/mcp@latest"
+      ]
+    },
+    "mysqlmcp": {
+      "command": "npx",
+      "args": [
+        "@liangshanli/mcp-server-mysql"
+      ],
+      "env": {
+        "MYSQL_HOST": "127.0.0.1",
+        "MYSQL_PORT": "your_port",
+        "MYSQL_USER": "user",
+        "MYSQL_PASSWORD": "password",
+        "MYSQL_DATABASE": "database_name"
+      }
+    }
+  }
+}
