@@ -8,7 +8,7 @@ model: inherit
 
 ## 允许改动的根路径
 
-在 `D:\39.102.37.69\puyueheng` 下仅：
+在 `D:\MYOA\webroot\puyueheng` 下仅：
 
 - `framework\com-lib`（常量等在 `src\constant`）
 - `service\service-api`（含 `app\job` 等）

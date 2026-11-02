@@ -13,7 +13,7 @@ alwaysApply: true
 | 区域 | 路径 | 栈 | Cursor 编码规则（ alwaysApply ） | 子代理执行摘要 |
 |------|------|-----|----------------------------------|----------------|
 | OA | `D:\MYOA\webroot` | PHP 5.2、Layui、MySQL 5.6 | [**oa-coding.mdc**](./oa-coding.mdc)（GBK 等硬约束） | [oa-agent](../../.cursor/agents/oa-agent.md) |
-| Service | `D:\39.102.37.69\puyueheng` | PHP 7.2、ThinkPHP 6、MySQL 5.6、Redis | [**service-coding.mdc**](./service-coding.mdc)（UTF-8 等硬约束） | [service-agent](../../.cursor/agents/service-agent.md) |
+| Service | `D:\MYOA\webroot\puyueheng` | PHP 7.2、ThinkPHP 6、MySQL 5.6、Redis | [**service-coding.mdc**](./service-coding.mdc)（UTF-8 等硬约束） | [service-agent](../../.cursor/agents/service-agent.md) |
 
 说明：两条编码规则与 **子代理**、**架构规则 md** 互补；模板级示例以 `OA与Service端架构规则.md` 为准。
 
