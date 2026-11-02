@@ -12,7 +12,7 @@
     - MySQL 5.6
     - 职责：页面展示、交互、表单提交
 
-2. **Service 端**（`D:\39.102.37.69\puyueheng`）：PHP 7.2 + ThinkPHP 6
+2. **Service 端**（`D:\MYOA\webroot\puyueheng`）：PHP 7.2 + ThinkPHP 6
     - UTF-8 编码
     - ThinkPHP 6 + Redis + MySQL 5.6
     - 职责：数据模型、业务逻辑、复杂计算、外部服务
@@ -43,7 +43,7 @@
 ```php
 ANew('oa/businesstype/subscription_center')
 // 映射到物理文件：
-// D:\39.102.37.69\puyueheng\service\service-app\src\service\oa\businesstype\subscription_center\Export.php
+// D:\MYOA\webroot\puyueheng\service\service-app\src\service\oa\businesstype\subscription_center\Export.php
 ```
 
 **映射公式：**
@@ -126,7 +126,7 @@ $service = ANew('oa/module/feature');
 $result = $service->methodName($params);
 ```
 
-### Service 端（`D:\39.102.37.69\puyueheng`）
+### Service 端（`D:\MYOA\webroot\puyueheng`）
 
 **文件编码：** **UTF-8**。
 
@@ -188,7 +188,7 @@ throw Exception::args();                              // 参数错误
 
 ## Constants
 
-Service 端常量：`D:\39.102.37.69\puyueheng\framework\com-lib\src\constant`
+Service 端常量：`D:\MYOA\webroot\puyueheng\framework\com-lib\src\constant`
 
 ## Queue Operations（示例）
 

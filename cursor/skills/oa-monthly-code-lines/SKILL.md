@@ -36,15 +36,15 @@ description: When the user asks toÍ³¼ÆÄ³¸öÔÂ OA ¶Ë + Service ¶Ë´úÂëÁ¿£¨°´×÷Õß¡¢Ê
 
 4. Service side code lines (stat_code_win.php)
    1. Service repos and working dirs:
-      - `com-lib`: `D:\39.102.37.69\puyueheng\framework\com-lib`
-      - `service-app`: `D:\39.102.37.69\puyueheng\service\service-app`
-      - `service-api`: `D:\39.102.37.69\puyueheng\service\service-api`
-      - `open-oa`: `D:\39.102.37.69\puyueheng\site\open-oa`
-      - `tool`: `D:\39.102.37.69\puyueheng\site\tool`
+      - `com-lib`: `D:\MYOA\webroot\puyueheng\framework\com-lib`
+      - `service-app`: `D:\MYOA\webroot\puyueheng\service\service-app`
+      - `service-api`: `D:\MYOA\webroot\puyueheng\service\service-api`
+      - `open-oa`: `D:\MYOA\webroot\puyueheng\site\open-oa`
+      - `tool`: `D:\MYOA\webroot\puyueheng\site\tool`
    2. Command order per repo:
       - `git checkout master`
       - `git pull` (or `git pull origin master` for repos without upstream tracking, such as `tool`)
-      - `php "D:\39.102.37.69\puyueheng\stat_code_win.php" "<author>" "<since>" "<before>"`
+      - `php "D:\MYOA\webroot\puyueheng\stat_code_win.php" "<author>" "<since>" "<before>"`
    3. Parse script output `´úÂëÐÐÊý: X` as service `codeLines`.
    4. Service effective lines:
       - `effectiveLines = codeLines - invalidLines(±¨±¸´úÂë)`
@@ -71,7 +71,7 @@ description: When the user asks toÍ³¼ÆÄ³¸öÔÂ OA ¶Ë + Service ¶Ë´úÂëÁ¿£¨°´×÷Õß¡¢Ê
 - `since` / `before` (optional; if omitted, derive from 26th-12:00 month window rule)
 - `ConfluencePageUrl`
 - `personName` (default `ÆÕÔÃºã`)
-- Service stat script path: `D:\39.102.37.69\puyueheng\stat_code_win.php`
+- Service stat script path: `D:\MYOA\webroot\puyueheng\stat_code_win.php`
 
 ## Useful defaults
 - Team month window (default):
